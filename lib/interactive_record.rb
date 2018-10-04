@@ -57,7 +57,7 @@ class InteractiveRecord
     hash_val = att_hash.values.first
     new_val = hash_val.is_a?(String) ? hash_val : hash_val.to_s
 
-    sql = "SELECT * FROM #{self.table_name} WHERE #{att_hash.keys.first} = #{new_val}"
+    sql = "SELECT * FROM #{self.table_name} WHERE #{att_hash.keys.first} = '#{new_val}'"
     DB[:conn].execute(sql)
   end
 
