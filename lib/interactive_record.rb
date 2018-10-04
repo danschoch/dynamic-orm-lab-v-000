@@ -55,7 +55,7 @@ class InteractiveRecord
 
   def self.find_by(att_hash)
     hash_val = att_hash.values.first
-    new_val = hash_val.is_a?(string) ? hash_val : hash_val.to_s
+    new_val = hash_val.is_a?(String) ? hash_val : hash_val.to_s
 
     sql = "SELECT * FROM #{self.table_name} WHERE #{att_hash.keys.first} = #{new_val}"
     DB[:conn].execute(sql)
