@@ -53,10 +53,11 @@ class InteractiveRecord
     DB[:conn].execute(sql)
   end
 
-  def self.find_by(att)
-    if att.is_a?(string)
-      self.find_by_name(att)
-    sql = "SELECT * FROM #{self.table_name} WHERE name = '#{name}'"
+  def self.find_by(att_hash)
+    hash_val = att_hash.values.first
+    new_val = hash_val.is_a?(string) ? hash_val : hash_val.to_s
+
+    sql = "SELECT * FROM #{self.table_name} WHERE #{attribute_hash.keys.first} = #{formatted_value}"
     DB[:conn].execute(sql)
   end
 
